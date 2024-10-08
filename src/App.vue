@@ -8,7 +8,7 @@
       <FilterBtn/>
     </div>
     <div id="leftBox" class="d-flex align-items-center">
-      <SortProducts/>
+      <SortProducts @updateSort = "updateSortProduct" />
     </div>
   </div>
 
@@ -34,12 +34,23 @@ provide("data",data)
 const selectedBrands = ref([]);  
 provide('selectedBrands', selectedBrands); 
 
+
 const availabilityStatus = ref(null)
 provide('availabilityStatus',availabilityStatus)
 function updateAvailabilityStatus (index){
   availabilityStatus.value = index
 }
 
+
+const sortUpdated = ref(null)
+provide('sortUpdated',sortUpdated)
+function updateSortProduct (index){
+  sortUpdated.value = index
+}
+
+
+// const number = ref(12300000)
+// console.log(number.value.toLocaleString('fa-IR'));
 </script>
 
 <style>

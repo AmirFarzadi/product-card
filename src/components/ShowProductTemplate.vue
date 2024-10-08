@@ -21,8 +21,9 @@
             <a href="#" class="btn btn-outline-success py-0 px-4">
               <i class="bi bi-cart-plus fs-5"></i>
             </a>
-            <span id="price" class=""
-              >{{ product.price }}<span class="ms-1">تومان</span></span
+            <span id="price" class="iranyekan_ebold"
+              >{{ Number(product.price).toLocaleString("fa-IR")
+              }}<span class="ms-1">تومان</span></span
             >
           </div>
         </div>
@@ -35,8 +36,10 @@
 import { computed, inject, ref } from "vue";
 const data = inject("data");
 const products = ref(data.products);
+
 const selectedBrands = inject("selectedBrands");
-const showAvailable = inject('availabilityStatus')
+const showAvailable = inject("availabilityStatus");
+const sortUpdated = inject("sortUpdated");
 const displayedProducts = computed(() => {
   let filtered = products.value;
   if (selectedBrands.value.length) {
@@ -47,6 +50,30 @@ const displayedProducts = computed(() => {
   if (showAvailable.value) {
     filtered = filtered.filter((product) => product.stock > 0);
   }
+  switch (sortUpdated.value) {
+    case "cheapest":
+      filtered = filtered.sort((a, b) => a.price - b.price);
+      break;
+    case "mostExpensive":
+      filtered = filtered.sort((a, b) => b.price - a.price);
+      break;
+    case "Bestselling":
+      filtered = filtered.sort((a, b) => b.sell - a.sell);
+      break;
+    case "newest":
+      filtered = filtered.sort(
+        (a, b) => new Date(b.created) - new Date(a.created)
+      );
+      break;
+    case "oldest":
+    filtered = filtered.sort(
+        (a, b) => new Date(a.created) - new Date(b.created)
+      );
+      break;
+    default:
+      break;
+  }
+
   return filtered;
 });
 </script>
