@@ -32,8 +32,8 @@
 <script setup>
 import { inject } from 'vue';
 const data = inject("data")
-const selectedBrands = inject("selectedBrands")
-console.log(selectedBrands.value);
+const selectedBrands = inject('selectedBrands');  // Inject here  
+
 const updateSelectedBrands = (brandName, isChecked) => {  
   if (isChecked) {  
     if (!selectedBrands.value.includes(brandName)) {  
@@ -43,6 +43,7 @@ const updateSelectedBrands = (brandName, isChecked) => {
     selectedBrands.value = selectedBrands.value.filter(brand => brand !== brandName);  
   }  
 };  
+
 </script>
 
 <style>

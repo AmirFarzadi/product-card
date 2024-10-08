@@ -10,7 +10,7 @@
             "id": 3,
             "name": "Motorola"
         },
-        "qty": 0,
+        "qty": 3,
         "stock": 3,
         "sell": 5,
         "created": "2024/05/06"
@@ -23,7 +23,7 @@
             "id": 5,
             "name": "Honor"
         },
-        "qty": 0,
+        "qty": 2,
         "stock": 4,
         "sell": 10,
         "created": "2024/05/06"
