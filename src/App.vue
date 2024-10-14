@@ -1,6 +1,5 @@
 <template>
   <NavbarSection/>
-
   <div id="filterBox" class="container mt-3 mb-3 border p-3 d-flex justify-content-between">
     <div id="rightBox" class="d-flex align-items-center justify-content-start">
       <FilterBrand :data="'brands'"/>
@@ -48,9 +47,13 @@ function updateSortProduct (index){
   sortUpdated.value = index
 }
 
+ const cart = ref([])
+ provide('cart',cart)
 
-// const number = ref(12300000)
-// console.log(number.value.toLocaleString('fa-IR'));
+ function deleteProductFromCart(id){
+  cart.value = cart.value.filter(item => item.id !== id)
+  }
+  provide('deleteBtn' ,deleteProductFromCart)
 </script>
 
 <style>

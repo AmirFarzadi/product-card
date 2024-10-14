@@ -35,16 +35,23 @@
         </ul>
       </div>
       <div class="d-flex position-absolute icons">
-        <i class="bi bi-person-fill fs-4"></i>
+        <i class="bi bi-person-fill fs-4 btn border-0 p-0"></i>
         <span class="line mx-3 mt-2"></span>
-        <i class="bi bi-cart-fill fs-4"></i>
+        <i class="bi bi-cart-fill fs-4 btn border-0 p-0" @click="cartBtnHandler"></i>
       </div>
     </div>
   </nav>
+  <shoppingCart v-if="showCart"/>
 </template>
 
 <script setup>
-
+import { provide, ref } from 'vue';
+import shoppingCart from '../shoppingCart.vue';
+const showCart = ref(false)
+provide('showCart', showCart)
+function cartBtnHandler(){
+  showCart.value ? showCart.value = false : showCart.value = true
+}
 </script>
 
 <style>
